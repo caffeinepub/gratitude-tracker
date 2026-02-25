@@ -1,0 +1,86 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Visualize gratitude entries as growing plant/tree organisms per subject",
+  "requirements": [
+    {
+      "id": "REQ-6",
+      "summary": "Create an interactive plant/tree visualization view that groups gratitude entries by category, rendering each category as a growing plant with branches/leaves representing individual entries",
+      "acceptanceCriteria": [
+        "Each unique category/subject from the stored entries is rendered as a separate plant/tree on screen.",
+        "A category with 1 entry shows a seed or seedling; 2–3 entries shows a sprout; 4–6 entries shows a sapling; 7+ entries shows a full tree.",
+        "Each gratitude entry for a subject is visually represented as a branch or leaf on its corresponding plant.",
+        "Hovering or tapping a branch/leaf displays the gratitude text for that entry.",
+        "The plant garden view updates reactively when entries are added or deleted.",
+        "Entries without a category are grouped under a default 'General' plant.",
+        "Plants are arranged in a horizontal scrollable or grid layout so multiple plants are visible at once."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/PlantGarden.tsx",
+          "operation": "create",
+          "description": "Create the main PlantGarden component that fetches entries using useGetEntries, groups them by category (defaulting to 'General' for entries without a category), and renders a horizontally scrollable garden layout containing a Plant component for each unique category. Pass the category name and its entries array to each Plant component."
+        },
+        {
+          "path": "frontend/src/components/Plant.tsx",
+          "operation": "create",
+          "description": "Create a Plant component that receives a category name and an array of gratitude entries. Determine the growth stage based on entry count (1 entry = seed using frontend/public/assets/generated/plant-seed.dim_128x128.png, 2-3 entries = sprout using frontend/public/assets/generated/plant-sprout.dim_128x128.png, 4-6 entries = sapling using frontend/public/assets/generated/plant-sapling.dim_200x256.png, 7+ entries = tree using frontend/public/assets/generated/plant-tree.dim_256x320.png). Render the appropriate plant image with the category label beneath it. For sprout stage and above, render interactive branches/leaves positioned around the plant image. Each branch/leaf represents one gratitude entry and shows a tooltip/popover with the entry text on hover or tap."
+        },
+        {
+          "path": "frontend/src/components/Branch.tsx",
+          "operation": "create",
+          "description": "Create a Branch component that renders an individual leaf or branch element for a single gratitude entry. Accept the entry text, timestamp, and position offset as props. Render as an SVG leaf shape or styled div positioned absolutely relative to the plant. On hover/tap, display a tooltip or popover showing the full gratitude text using a shadcn/ui Popover or Tooltip component."
+        },
+        {
+          "path": "frontend/src/utils/plantGrouping.ts",
+          "operation": "create",
+          "description": "Create utility functions to group gratitude entries by category, returning a Record<string, GratitudeEntry[]> where each key is a category name (defaulting to 'General' for null/empty categories). Include a function to determine plant growth stage based on entry count (seed, sprout, sapling, tree)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Replace the existing flat gratitude list view with the plant garden visualization as the primary display mode, adding a toggle to switch between garden and list views",
+      "acceptanceCriteria": [
+        "On load, the app defaults to the plant garden visualization view.",
+        "A toggle or tab allows switching between the garden view and the traditional list view.",
+        "GratitudeForm and GratitudeStats remain visible and functional above the garden view.",
+        "The garden view fills the main content area with a warm, nature-inspired aesthetic consistent with the existing warm color theme."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Replace the GratitudeList component with the new PlantGarden component as the default view. Add state to track the current view mode (garden or list). Add a toggle button or tab switcher above the main content area that allows switching between PlantGarden and GratitudeList. Conditionally render PlantGarden or GratitudeList based on the current view state. Keep Header, GratitudeStats, GratitudeForm, and Footer in their current positions."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Apply a nature-inspired visual style to the plant garden with earthy backgrounds, organic plant styling, gentle sway animations, and growth animations when entries are added",
+      "acceptanceCriteria": [
+        "The garden background uses an earthy warm gradient (sky, soil tones) consistent with the app's warm palette.",
+        "Plants gently sway in a looping idle animation.",
+        "When a gratitude entry is added to a subject, the corresponding plant plays a visible grow or 'watering' animation.",
+        "Plant colors and shapes feel organic and nature-inspired (greens, ambers, browns, leaf shapes)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/PlantGarden.tsx",
+          "operation": "modify",
+          "description": "Add a garden background container that layers the generated sky image frontend/public/assets/generated/garden-sky.dim_1200x600.png as a background and the generated ground strip frontend/public/assets/generated/garden-ground.dim_1200x120.png at the bottom. Apply warm earthy styling consistent with the app's existing warm palette from frontend/src/index.css and frontend/tailwind.config.js. Ensure the garden area has sufficient padding and fills the main content area."
+        },
+        {
+          "path": "frontend/src/components/Plant.tsx",
+          "operation": "modify",
+          "description": "Add a looping CSS animation (gentle sway using transform and rotation) to the plant image element. When the component detects a new entry has been added (via a prop or context), trigger a brief growth/watering animation (scale up slightly, then return) using CSS keyframe animation or a transition. Style branches/leaves with organic SVG leaf shapes using warm greens, ambers, and browns from the app's palette."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Add CSS keyframe animations for plant sway (subtle rotation and translate) and growth/watering effect (scale and opacity changes). Use the existing warm OKLCH color tokens for plant and garden styling. Ensure animations are smooth and feel organic."
+        }
+      ]
+    }
+  ]
+}

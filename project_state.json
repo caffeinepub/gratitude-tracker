@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 5,
+  "summary": "A gratitude tracking app where gratitude entries are visualized as growing plants/trees. Each plant represents a subject/category, and the branches of the plant represent individual gratitude entries for that subject. The more entries added to a subject, the more the plant grows.",
+  "architectural_notes": [
+    "Plant/tree visualization: each subject/category maps to one plant; gratitude entries are rendered as branches; more entries = more growth visually."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Seed stage: a small round brown seed sitting in dark soil, warm minimal illustration style (plant-seed.dim_128x128.png)\n- Sprout stage: a tiny green sprout with two small leaves emerging from soil, warm earthy illustration style (plant-sprout.dim_128x128.png)\n- Sapling stage: a small leafy tree sapling with a thin trunk and several branches, warm greens and ambers, illustrated (plant-sapling.dim_200x256.png)\n- Full tree stage: a lush full tree with many rounded leaf clusters, warm sage greens and golden ambers, illustrated (plant-tree.dim_256x320.png)\n- Earthy garden ground/soil strip texture, wide horizontal banner for the garden floor (garden-ground.dim_1200x120.png)\n- Soft warm sky gradient background for the plant garden scene, light amber and cream tones (garden-sky.dim_1200x600.png)",
+  "existing_features": [
+    {
+      "id": "feature-build-a-frontend-gratitude-entry-form-that-allows-users-to-type-their-gratitude-text-and-optionally-select-or-type-a-category-tag-then-submit-the-entry-on-submission-call-the-backend-addentry-method-and-refresh-the-displayed-list",
+      "title": "Build a frontend gratitude entry form that allows users to type their gratitude text and optionally select or type a category/tag, then submit the entry. On submission, call the backend addEntry method and refresh the displayed list.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-a-frontend-gratitude-entries-list-view-that-fetches-and-displays-all-stored-gratitude-entries-from-the-backend-each-entry-card-must-show-the-gratitude-text-the-category-tag-if-present-and-the-formatted-date-time-include-a-delete-button-on-each-card-that-calls-deleteentry-and-removes-it-from-the-list",
+      "title": "Build a frontend gratitude entries list view that fetches and displays all stored gratitude entries from the backend. Each entry card must show: the gratitude text, the category/tag (if present), and the formatted date/time. Include a delete button on each card that calls deleteEntry and removes it from the list.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-display-a-simple-motivational-stats-bar-or-summary-section-at-the-top-of-the-page-showing-total-number-of-gratitude-entries-logged-and-a-short-motivational-message-e-g-you-ve-found-12-things-to-be-grateful-for-update-this-count-reactively-as-entries-are-added-or-deleted",
+      "title": "Display a simple motivational stats bar or summary section at the top of the page showing: total number of gratitude entries logged and a short motivational message (e.g., 'You've found 12 things to be grateful for!'). Update this count reactively as entries are added or deleted.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-warm-uplifting-visual-theme-across-the-entire-app-use-a-soft-warm-palette-e-g-golden-ambers-warm-creams-and-sage-greens-with-rounded-card-components-elegant-serif-or-friendly-sans-serif-typography-subtle-shadow-depth-on-cards-and-a-clean-centered-layout-the-aesthetic-should-feel-calm-journal-like-and-positive",
+      "title": "Apply a warm, uplifting visual theme across the entire app. Use a soft warm palette (e.g., golden ambers, warm creams, and sage greens) with rounded card components, elegant serif or friendly sans-serif typography, subtle shadow depth on cards, and a clean centered layout. The aesthetic should feel calm, journal-like, and positive.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-an-interactive-plant-tree-visualization-view-group-all-gratitude-entries-by-their-category-subject-each-unique-category-becomes-its-own-plant-render-each-plant-as-an-animated-growing-tree-or-plant-illustration-using-react-three-fiber-three-js-or-svg-based-2d-rendering-the-plant-starts-as-a-seed-when-there-is-1-entry-grows-into-a-sprout-with-2-3-entries-a-sapling-with-4-6-entries-and-a-full-tree-with-7-entries-each-individual-gratitude-entry-for-a-subject-is-represented-as-a-branch-or-leaf-on-that-plant-display-the-subject-category-label-beneath-each-plant-tapping-or-hovering-a-branch-leaf-reveals-the-gratitude-text-for-that-entry-in-a-tooltip-or-popover",
+      "title": "Create an interactive plant/tree visualization view. Group all gratitude entries by their category/subject — each unique category becomes its own plant. Render each plant as an animated, growing tree or plant illustration using React Three Fiber (Three.js) or SVG-based 2D rendering. The plant starts as a seed when there is 1 entry, grows into a sprout with 2–3 entries, a sapling with 4–6 entries, and a full tree with 7+ entries. Each individual gratitude entry for a subject is represented as a branch or leaf on that plant. Display the subject/category label beneath each plant. Tapping or hovering a branch/leaf reveals the gratitude text for that entry in a tooltip or popover.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-or-supplement-the-existing-flat-gratitude-list-view-gratitudelist-with-the-new-plant-garden-visualization-as-the-primary-display-mode-the-form-gratitudeform-and-stats-bar-gratitudestats-should-remain-accessible-above-the-garden-the-garden-should-be-the-hero-visual-experience-of-the-app-keep-the-existing-list-view-accessible-as-a-secondary-list-view-toggle-if-needed-but-default-the-app-to-the-garden-plant-view",
+      "title": "Replace or supplement the existing flat gratitude list view (GratitudeList) with the new plant garden visualization as the primary display mode. The form (GratitudeForm) and stats bar (GratitudeStats) should remain accessible above the garden. The garden should be the hero visual experience of the app. Keep the existing list view accessible as a secondary 'List View' toggle if needed, but default the app to the garden/plant view.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-nature-inspired-visual-style-to-the-plant-garden-page-use-an-earthy-warm-background-e-g-soft-soil-or-sky-gradient-and-style-plants-with-organic-shapes-warm-greens-ambers-and-browns-consistent-with-the-existing-warm-palette-add-a-gentle-idle-sway-animation-to-plants-when-a-new-entry-is-added-trigger-a-brief-watering-or-growth-animation-on-the-corresponding-plant-to-show-it-growing",
+      "title": "Apply a nature-inspired visual style to the plant garden page. Use an earthy, warm background (e.g., soft soil or sky gradient), and style plants with organic shapes, warm greens, ambers, and browns consistent with the existing warm palette. Add a gentle idle sway animation to plants. When a new entry is added, trigger a brief 'watering' or 'growth' animation on the corresponding plant to show it growing.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Gratitude tracking app - core functionality to log and view gratitude entries",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Create a backend data model and actor methods to store, retrieve, and delete gratitude entries. Each entry must include: a unique ID, the gratitude text (string), an optional category/tag (string), and a timestamp (Int). Expose the following methods: addEntry(text, category) → returns new entry; getEntries() → returns all entries sorted by newest first; deleteEntry(id) → removes an entry by ID.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Visualize gratitude entries as growing plants/trees. Each plant represents a unique subject/category. Individual gratitude entries for a subject appear as branches on that plant. As more entries are added to a subject, the plant visually grows and gains more branches — metaphorically 'watering' the seed into a full tree.",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Gratitude Tracker",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

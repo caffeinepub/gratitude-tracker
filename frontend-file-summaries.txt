@@ -1,0 +1,14 @@
+{
+  "frontend/src/index.css": "Global styles with warm OKLCH color tokens for light/dark modes, Google Fonts import, and CSS keyframe animations for plant-sway, plant-grow, leaf-sway, and fade-in-up effects.",
+  "frontend/tailwind.config.js": "Extended Tailwind config with warm font families, custom border radii, warm shadow utilities, and animation keyframes including plant-sway, plant-grow, and leaf-sway for the garden visualization.",
+  "frontend/src/utils/formatDate.ts": "Utility functions to format bigint nanosecond timestamps into human-readable date strings and relative time strings (e.g., \"2 hours ago\").",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for all backend operations: useGetEntries (fetch all), useAddEntry (mutation with cache update), and useDeleteEntry (mutation with optimistic removal).",
+  "frontend/src/components/GratitudeStats.tsx": "Stats banner showing total entry count with a dynamic motivational message and sun icon, styled as a warm amber-tinted panel.",
+  "frontend/src/components/GratitudeForm.tsx": "Gratitude entry form with a multi-line textarea, optional category input with quick-select suggestions, loading state, and submission via useAddEntry mutation.",
+  "frontend/src/components/GratitudeList.tsx": "Scrollable list of gratitude entry cards showing text, category badge, relative timestamp, and a hover-revealed delete button with optimistic removal; includes skeleton loading and empty state.",
+  "frontend/src/App.tsx": "Root app component with a Garden/List view toggle; defaults to the PlantGarden view and conditionally renders PlantGarden or GratitudeList below the persistent Header, HeroBanner, GratitudeStats, and GratitudeForm sections.",
+  "frontend/src/utils/plantGrouping.ts": "Utility functions to group gratitude entries by category into PlantGroup records, determine plant growth stage (seed/sprout/sapling/tree) based on entry count, and return the correct plant image path and display size for each stage.",
+  "frontend/src/components/Branch.tsx": "Individual leaf component rendered as an SVG leaf shape positioned absolutely around a plant; shows a tooltip popover with the gratitude entry text and relative timestamp on hover, focus, or tap.",
+  "frontend/src/components/Plant.tsx": "Plant component that receives a category name, entries array, and growth stage; renders the appropriate plant image with a gentle sway animation, triggers a grow animation when new entries are added, and overlays interactive Branch leaf components for each entry (sprout stage and above).",
+  "frontend/src/components/PlantGarden.tsx": "Main garden view component that fetches all entries, groups them by category, and renders each group as a Plant inside a horizontally scrollable container with a sky/ground background; includes skeleton loading and an empty-garden state."
+}

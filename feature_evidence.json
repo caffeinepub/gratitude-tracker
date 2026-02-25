@@ -1,0 +1,64 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-an-interactive-plant-tree-visualization-view-group-all-gratitude-entries-by-their-category-subject-each-unique-category-becomes-its-own-plant-render-each-plant-as-an-animated-growing-tree-or-plant-illustration-using-react-three-fiber-three-js-or-svg-based-2d-rendering-the-plant-starts-as-a-seed-when-there-is-1-entry-grows-into-a-sprout-with-2-3-entries-a-sapling-with-4-6-entries-and-a-full-tree-with-7-entries-each-individual-gratitude-entry-for-a-subject-is-represented-as-a-branch-or-leaf-on-that-plant-display-the-subject-category-label-beneath-each-plant-tapping-or-hovering-a-branch-leaf-reveals-the-gratitude-text-for-that-entry-in-a-tooltip-or-popover",
+      "featureTitle": "Create an interactive plant/tree visualization view. Group all gratitude entries by their category/subject — each unique category becomes its own plant. Render each plant as an animated, growing tree or plant illustration using React Three Fiber (Three.js) or SVG-based 2D rendering. The plant starts as a seed when there is 1 entry, grows into a sprout with 2–3 entries, a sapling with 4–6 entries, and a full tree with 7+ entries. Each individual gratitude entry for a subject is represented as a branch or leaf on that plant. Display the subject/category label beneath each plant. Tapping or hovering a branch/leaf reveals the gratitude text for that entry in a tooltip or popover.",
+      "files": [
+        "frontend/src/components/Branch.tsx",
+        "frontend/src/components/Plant.tsx",
+        "frontend/src/components/PlantGarden.tsx",
+        "frontend/src/utils/plantGrouping.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-replace-or-supplement-the-existing-flat-gratitude-list-view-gratitudelist-with-the-new-plant-garden-visualization-as-the-primary-display-mode-the-form-gratitudeform-and-stats-bar-gratitudestats-should-remain-accessible-above-the-garden-the-garden-should-be-the-hero-visual-experience-of-the-app-keep-the-existing-list-view-accessible-as-a-secondary-list-view-toggle-if-needed-but-default-the-app-to-the-garden-plant-view",
+      "featureTitle": "Replace or supplement the existing flat gratitude list view (GratitudeList) with the new plant garden visualization as the primary display mode. The form (GratitudeForm) and stats bar (GratitudeStats) should remain accessible above the garden. The garden should be the hero visual experience of the app. Keep the existing list view accessible as a secondary 'List View' toggle if needed, but default the app to the garden/plant view.",
+      "files": [
+        "frontend/src/App.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-apply-a-nature-inspired-visual-style-to-the-plant-garden-page-use-an-earthy-warm-background-e-g-soft-soil-or-sky-gradient-and-style-plants-with-organic-shapes-warm-greens-ambers-and-browns-consistent-with-the-existing-warm-palette-add-a-gentle-idle-sway-animation-to-plants-when-a-new-entry-is-added-trigger-a-brief-watering-or-growth-animation-on-the-corresponding-plant-to-show-it-growing",
+      "featureTitle": "Apply a nature-inspired visual style to the plant garden page. Use an earthy, warm background (e.g., soft soil or sky gradient), and style plants with organic shapes, warm greens, ambers, and browns consistent with the existing warm palette. Add a gentle idle sway animation to plants. When a new entry is added, trigger a brief 'watering' or 'growth' animation on the corresponding plant to show it growing.",
+      "files": [
+        "frontend/src/components/Plant.tsx",
+        "frontend/src/components/PlantGarden.tsx",
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

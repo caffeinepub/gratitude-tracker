@@ -1,0 +1,23 @@
+{
+  "backend/main.mo": "Motoko actor implementing the gratitude journal backend with add, get (sorted by timestamp descending), and delete operations stored in a persistent Map.",
+  "feature_evidence.json": "Feature evidence report mapping implemented features (plant garden visualization, view toggle, nature-inspired styling) to their source files, components, and test IDs.",
+  "frontend-file-summaries.txt": "JSON document containing one-sentence summaries of each frontend source file, serving as a quick reference for the project's frontend structure.",
+  "frontend/index.css": "Base Tailwind CSS file defining OKLCH CSS custom properties for light and dark color themes used throughout the app.",
+  "frontend/index.html": "Minimal HTML entry point that mounts the React app into a root div and loads the main TypeScript module.",
+  "frontend/src/App.tsx": "Root React component that renders the app shell (Header, HeroBanner, GratitudeStats, GratitudeForm) and a Garden/List view toggle, defaulting to the PlantGarden view.",
+  "frontend/src/components/Branch.tsx": "SVG leaf component positioned around a plant that shows a tooltip popover with the gratitude entry text and relative timestamp on hover, focus, or click.",
+  "frontend/src/components/GratitudeForm.tsx": "Form component for submitting new gratitude entries with a textarea, optional category input with quick-select suggestions, and loading state via the useAddEntry mutation.",
+  "frontend/src/components/GratitudeList.tsx": "Renders a list of gratitude journal entries as cards with category badges, relative timestamps, and delete buttons, plus skeleton loading and empty states.",
+  "frontend/src/components/GratitudeStats.tsx": "Displays a summary banner showing the total number of gratitude entries and a motivational message that scales with entry count.",
+  "frontend/src/components/Plant.tsx": "Renders a single animated plant visual for a gratitude category, showing a stage-appropriate image with branch/leaf overlays and a grow animation triggered by new entries.",
+  "frontend/src/components/PlantGarden.tsx": "Displays a scrollable garden scene with sky and ground backgrounds, rendering a Plant component for each grouped gratitude category with skeleton and empty states.",
+  "frontend/src/hooks/useActor.ts": "Creates and caches an ICP backend actor (authenticated or anonymous) based on the current Internet Identity, invalidating dependent queries when the actor changes.",
+  "frontend/src/hooks/useInternetIdentity.ts": "Provides a React context and hook for Internet Identity authentication, managing AuthClient creation, login, logout, and persisted identity state.",
+  "frontend/src/hooks/useQueries.ts": "Defines TanStack Query hooks for fetching, adding, and deleting gratitude entries via the backend actor, with optimistic updates for deletion.",
+  "frontend/src/index.css": "Global CSS file that imports Google Fonts (Lora, Inter), sets up Tailwind directives, defines OKLCH-based CSS custom properties for light/dark themes, and declares plant/garden keyframe animations.",
+  "frontend/src/main.tsx": "React app entry point that mounts the app with QueryClientProvider for React Query and InternetIdentityProvider for ICP authentication wrapping the root App component.",
+  "frontend/src/utils/formatDate.ts": "Utility functions to format bigint nanosecond timestamps into human-readable date strings and relative time strings (e.g., '2 hours ago').",
+  "frontend/src/utils/plantGrouping.ts": "Utility module that groups gratitude entries by category, determines plant growth stage (seed/sprout/sapling/tree) based on entry count, and provides helpers for plant images, sizes, and stage labels.",
+  "frontend/tailwind.config.js": "Tailwind CSS configuration extending the theme with OKLCH CSS variable-based colors, custom fonts (Lora/Inter), border radii, box shadows, and keyframe animations; includes typography, container-queries, and animate plugins.",
+  "project_state.json": "Project state metadata file describing the gratitude tracking app's architecture, existing features, required image assets, and versioning information for build planning."
+}
