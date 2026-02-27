@@ -1,37 +1,41 @@
 # Gratitude Garden
 
 ## Current State
-A fully-featured gratitude tracking app with:
-- A living watercolor garden where each plant/tree represents a gratitude subject, with branches and leaves for each entry
-- Seasonal and time-of-day awareness (sun, moon, stars, sky gradients)
-- Animated birds, falling petals/leaves, watercolor SVG trees on the horizon
-- Ambient audio (piano, birdsong, rustling leaves) with smooth fade-in
-- Goals page with reminders and suggested goals
-- Share/snapshot functionality
-- The design token colors are flat neutral (grey/white), lacking the rich warm nature palette the app deserves
+A rich gratitude tracking app with a watercolor botanical garden aesthetic. Features include:
+- Animated garden with seasonal changes (spring/summer/autumn/winter), time-of-day sky shifts (dawn, morning, midday, dusk, evening, night), sun/moon, clouds, stars
+- Multiple plant/tree types (oak, cypress, lollipop, citrus, shrub, willow, magnolia) with watercolor SVG overlays and branch/leaf gratitude entries
+- Birds (sparrow, robin, blue tit, canary, cardinal, parakeet) with seasonal weighting
+- Falling particles (spring petals, autumn leaves)
+- Ambient sounds: piano, birdsong, rustling leaves with smooth fade-in
+- Goals page for daily gratitude cultivation
+- Save/share snapshot
+- Caffeine.ai footer attribution
+
+The app is well-built and code-complete. The user wants to polish and publish it.
 
 ## Requested Changes (Diff)
 
 ### Add
-- Rich OKLCH warm-green/earth design tokens (primary = forest green, accent = warm amber, background = soft cream) to match the garden theme
-- Subtle animated entrance for the garden scene
-- Better typography hierarchy using serif for headings, clean sans-serif for body
+- Improved overall UI polish: stronger botanical identity, richer visual hierarchy, more personality in the garden display
+- Caption/message field when sharing (the user previously requested this and it was suggested)
+- Additional UI refinements to make the app feel production-ready and worth publishing
 
 ### Modify
-- `index.css` (in `/src/frontend/`): Replace neutral grey design tokens with warm botanical palette (cream backgrounds, forest green primary, amber accents, soft earth tones)
-- `App.tsx`: Improve header with a warmer color background that feels more nature-inspired
-- Overall visual polish: tighten spacing, improve card aesthetics, make goals page feel more cohesive with garden theme
+- Share functionality: add optional personal caption/message when sharing
+- Header: subtle improvements to make it feel more premium/branded
+- Garden controls: slight refinement for a polished look
+- Footer: ensure attribution is clean and present
 
 ### Remove
-- Nothing removed
+- Nothing
 
 ## Implementation Plan
-1. Update `index.css` design tokens to warm botanical OKLCH palette
-2. Update `App.tsx` header to use the richer palette
-3. Run UI Craft audit pass for top visual improvements
-4. Validate build
+1. Add caption input to the Share flow (modal or inline prompt before sharing)
+2. Polish the header typography and visual weight
+3. Refine garden control buttons (Save, Share, Sound) for better visual cohesion
+4. Ensure all lint/type errors are clean for a production-ready build
 
 ## UX Notes
-- The garden is the star — keep it full-width and atmospheric
-- Headers should feel calm and natural, not corporate
-- Warm cream/parchment backgrounds evoke journaling and mindfulness
+- Keep the watercolor aesthetic consistent throughout
+- Share caption should be optional and quick to dismiss
+- Controls should feel tactile and intentional, not generic

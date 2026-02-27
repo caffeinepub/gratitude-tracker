@@ -89,7 +89,7 @@ export default function GoalsPage() {
               style={{ background: "oklch(0.98 0.025 80)" }}>
               <Target className="w-5 h-5 text-primary" />
             </div>
-            <h1 className="font-display text-3xl font-bold text-foreground tracking-tight">
+            <h1 className="font-display text-3xl font-semibold text-foreground tracking-tight" style={{ fontStyle: "italic" }}>
               Gratitude Goals
             </h1>
           </div>
@@ -331,7 +331,7 @@ interface GoalCardProps {
 function GoalCard({ goal, onToggle, onDelete, isUpdating, isDeleting }: GoalCardProps) {
   return (
     <div
-      className={`flex items-start gap-3 px-4 py-3.5 rounded-xl border transition-all ${
+      className={`group flex items-start gap-3 px-4 py-3.5 rounded-xl border transition-all ${
         goal.completed
           ? "bg-muted/40 border-border/30 opacity-70"
           : "bg-card border-border/50 shadow-warm hover:border-primary/30"

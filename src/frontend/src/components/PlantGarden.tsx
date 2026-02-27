@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect, useMemo } from "react";
-import { Volume2, VolumeX, Camera, Share2 } from "lucide-react";
+import { VolumeX, Camera, Share2, Send, X } from "lucide-react";
 import { toast } from "sonner";
 import type { GratitudeEntry } from "../backend";
 import { groupEntriesByCategory } from "../utils/plantGrouping";
@@ -275,6 +275,8 @@ const SOUND_WAVE_STYLE = `
 
 export default function PlantGarden({ entries }: PlantGardenProps) {
   const [isMuted, setIsMuted] = useState(true);
+  const [showSharePanel, setShowSharePanel] = useState(false);
+  const [shareCaption, setShareCaption] = useState("");
   const pianoRef = useRef<HTMLAudioElement | null>(null);
   const birdsRef = useRef<HTMLAudioElement | null>(null);
   const leavesRef = useRef<HTMLAudioElement | null>(null);
@@ -428,11 +430,16 @@ export default function PlantGarden({ entries }: PlantGardenProps) {
     }
   };
 
+  const defaultShareMessage = `🌱 My Gratitude Garden is growing! I've added ${entries.length} gratitude entr${entries.length === 1 ? "y" : "ies"}. What are you grateful for today?`;
+
+  const openSharePanel = () => {
+    setShareCaption(defaultShareMessage);
+    setShowSharePanel(true);
+  };
+
   const handleShare = async () => {
-    const text =
-      "🌱 My Gratitude Garden is growing! I've added " +
-      entries.length +
-      " gratitude entries. What are you grateful for today?";
+    const text = shareCaption.trim() || defaultShareMessage;
+    setShowSharePanel(false);
     if (navigator.share) {
       try {
         await navigator.share({ title: "My Gratitude Garden", text });
@@ -667,75 +674,120 @@ export default function PlantGarden({ entries }: PlantGardenProps) {
         </span>
       </div>
 
+      {/* === SHARE PANEL (inline popover) === */}
+      {showSharePanel && (
+        <div
+          className="absolute bottom-14 right-4 w-72 rounded-2xl bg-white/90 backdrop-blur-md border border-white/60 shadow-2xl p-4"
+          style={{ zIndex: 20 }}
+        >
+          <div className="flex items-center justify-between mb-3">
+            <span className="font-serif text-sm font-semibold text-foreground">
+              Share your garden
+            </span>
+            <button
+              type="button"
+              onClick={() => setShowSharePanel(false)}
+              className="w-6 h-6 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-black/8 transition-all"
+              aria-label="Close share panel"
+            >
+              <X className="w-3.5 h-3.5" />
+            </button>
+          </div>
+          <textarea
+            value={shareCaption}
+            onChange={(e) => setShareCaption(e.target.value)}
+            rows={3}
+            placeholder="Add a personal message…"
+            className="w-full text-xs font-body text-foreground bg-white/70 border border-border/50 rounded-xl px-3 py-2 resize-none focus:outline-none focus:ring-1 focus:ring-primary/40 focus:border-primary/40 placeholder:text-muted-foreground/50 leading-relaxed"
+          />
+          <button
+            type="button"
+            onClick={handleShare}
+            className="mt-3 w-full flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-primary text-primary-foreground text-xs font-body font-semibold hover:bg-primary/90 active:scale-[0.98] transition-all shadow-warm"
+          >
+            <Send className="w-3.5 h-3.5" />
+            Share
+          </button>
+        </div>
+      )}
+
       {/* === CONTROLS === */}
       <div
-        className="absolute bottom-4 right-4 flex gap-2"
+        className="absolute bottom-4 right-4 flex items-center gap-1.5"
         style={{ zIndex: 11 }}
       >
-        <button
-          type="button"
-          onClick={handleSaveSnapshot}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/20 hover:bg-white/35 backdrop-blur-sm text-white text-xs font-body border border-white/30 transition-all"
-          title="Save snapshot"
-        >
-          <Camera className="w-3.5 h-3.5" />
-          Save
-        </button>
-        <button
-          type="button"
-          onClick={handleShare}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/20 hover:bg-white/35 backdrop-blur-sm text-white text-xs font-body border border-white/30 transition-all"
-          title="Share garden"
-        >
-          <Share2 className="w-3.5 h-3.5" />
-          Share
-        </button>
-        <button
-          type="button"
-          onClick={() => setIsMuted((m) => !m)}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/20 hover:bg-white/35 backdrop-blur-sm text-white text-xs font-body border border-white/30 transition-all"
-          title={isMuted ? "Unmute ambient sounds" : "Mute ambient sounds"}
-        >
-          {isMuted ? (
-            <VolumeX className="w-3.5 h-3.5" />
-          ) : (
-            /* Animated sound-wave indicator */
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 14 14"
-              fill="currentColor"
-              aria-hidden="true"
-              style={{ flexShrink: 0 }}
-            >
-              <rect
-                x="1" y="4" width="2.2" height="6" rx="1.1"
-                style={{
-                  transformOrigin: "50% 100%",
-                  animation: "sound-bar-pulse 0.9s ease-in-out infinite",
-                  animationDelay: "0ms",
-                }}
-              />
-              <rect
-                x="5.9" y="2" width="2.2" height="10" rx="1.1"
-                style={{
-                  transformOrigin: "50% 100%",
-                  animation: "sound-bar-pulse 0.9s ease-in-out infinite",
-                  animationDelay: "150ms",
-                }}
-              />
-              <rect
-                x="10.8" y="4" width="2.2" height="6" rx="1.1"
-                style={{
-                  transformOrigin: "50% 100%",
-                  animation: "sound-bar-pulse 0.9s ease-in-out infinite",
-                  animationDelay: "300ms",
-                }}
-              />
-            </svg>
-          )}
-          {isMuted ? "Sound" : "Mute"}
-        </button>
+        {/* Grouped pill container */}
+        <div className="flex items-center gap-px rounded-full bg-black/25 backdrop-blur-sm border border-white/20 overflow-hidden shadow-lg">
+          <button
+            type="button"
+            onClick={handleSaveSnapshot}
+            className="flex items-center gap-1.5 px-3 py-2 text-white text-xs font-body hover:bg-white/20 active:bg-white/30 transition-all"
+            title="Save snapshot"
+          >
+            <Camera className="w-3.5 h-3.5 shrink-0" />
+            <span className="hidden sm:inline">Save</span>
+          </button>
+
+          <div className="w-px h-4 bg-white/20 shrink-0" />
+
+          <button
+            type="button"
+            onClick={openSharePanel}
+            className="flex items-center gap-1.5 px-3 py-2 text-white text-xs font-body hover:bg-white/20 active:bg-white/30 transition-all"
+            title="Share garden"
+          >
+            <Share2 className="w-3.5 h-3.5 shrink-0" />
+            <span className="hidden sm:inline">Share</span>
+          </button>
+
+          <div className="w-px h-4 bg-white/20 shrink-0" />
+
+          <button
+            type="button"
+            onClick={() => setIsMuted((m) => !m)}
+            className="flex items-center gap-1.5 px-3 py-2 text-white text-xs font-body hover:bg-white/20 active:bg-white/30 transition-all"
+            title={isMuted ? "Unmute ambient sounds" : "Mute ambient sounds"}
+          >
+            {isMuted ? (
+              <VolumeX className="w-3.5 h-3.5 shrink-0" />
+            ) : (
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="currentColor"
+                aria-hidden="true"
+                style={{ flexShrink: 0 }}
+              >
+                <rect
+                  x="1" y="4" width="2.2" height="6" rx="1.1"
+                  style={{
+                    transformOrigin: "50% 100%",
+                    animation: "sound-bar-pulse 0.9s ease-in-out infinite",
+                    animationDelay: "0ms",
+                  }}
+                />
+                <rect
+                  x="5.9" y="2" width="2.2" height="10" rx="1.1"
+                  style={{
+                    transformOrigin: "50% 100%",
+                    animation: "sound-bar-pulse 0.9s ease-in-out infinite",
+                    animationDelay: "150ms",
+                  }}
+                />
+                <rect
+                  x="10.8" y="4" width="2.2" height="6" rx="1.1"
+                  style={{
+                    transformOrigin: "50% 100%",
+                    animation: "sound-bar-pulse 0.9s ease-in-out infinite",
+                    animationDelay: "300ms",
+                  }}
+                />
+              </svg>
+            )}
+            <span className="hidden sm:inline">{isMuted ? "Sound" : "Mute"}</span>
+          </button>
+        </div>
       </div>
 
       {/* Sound-wave keyframe styles */}

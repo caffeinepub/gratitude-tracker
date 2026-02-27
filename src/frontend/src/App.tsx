@@ -39,15 +39,17 @@ function AppContent() {
         </div>
         <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between relative">
           {/* Logo */}
-          <button
+           <button
             type="button"
             onClick={() => setPage("home")}
             className="flex items-center gap-2.5 group"
           >
-            <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center group-hover:bg-primary/30 transition-all shadow-sm border border-primary/20">
-              <Leaf className="w-4 h-4 text-primary" />
+            <div className="relative w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center group-hover:bg-primary/30 transition-all shadow-sm border border-primary/20">
+              <Leaf className="w-4 h-4 text-primary group-hover:scale-110 transition-transform duration-300" />
+              {/* Subtle ring pulse on hover */}
+              <span className="absolute inset-0 rounded-full ring-2 ring-primary/0 group-hover:ring-primary/20 transition-all duration-500" />
             </div>
-            <span className="font-serif text-lg font-bold text-foreground tracking-tight">
+            <span className="font-serif text-xl font-semibold text-foreground tracking-tight" style={{ fontStyle: "italic", letterSpacing: "-0.01em" }}>
               Gratitude Garden
             </span>
           </button>
@@ -101,10 +103,10 @@ function AppContent() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
               <div className="absolute bottom-6 left-0 right-0 text-center px-4">
-                <h1 className="font-serif text-2xl sm:text-3xl font-bold text-white drop-shadow-lg">
+                <h1 className="font-serif text-3xl sm:text-4xl font-semibold text-white drop-shadow-lg" style={{ fontStyle: "italic", letterSpacing: "-0.01em" }}>
                   Your Gratitude Garden
                 </h1>
-                <p className="font-sans text-sm text-white/85 mt-1 drop-shadow">
+                <p className="font-sans text-sm text-white/85 mt-1.5 drop-shadow tracking-wide">
                   Nurture gratitude, watch it bloom 🌸
                 </p>
               </div>

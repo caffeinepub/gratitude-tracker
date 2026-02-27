@@ -50,7 +50,7 @@ export function GratitudeForm() {
                   style={{ background: "oklch(0.96 0.04 75)" }}>
                     <PlusCircle className="w-4.5 h-4.5 text-primary" />
                 </div>
-                <h2 className="font-serif text-xl font-semibold text-foreground tracking-tight">
+                <h2 className="font-serif text-2xl font-semibold text-foreground tracking-tight" style={{ fontStyle: "italic" }}>
                     What are you grateful for today?
                 </h2>
             </div>

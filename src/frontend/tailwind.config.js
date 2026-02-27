@@ -16,8 +16,10 @@ export default {
         },
         extend: {
             fontFamily: {
-                serif: ['Lora', 'Georgia', 'serif'],
-                sans: ['Inter', 'system-ui', 'sans-serif'],
+                serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+                display: ['Cormorant Garamond', 'Georgia', 'serif'],
+                sans: ['Nunito', 'system-ui', 'sans-serif'],
+                body: ['Nunito', 'system-ui', 'sans-serif'],
             },
             colors: {
                 border: 'oklch(var(--border))',
