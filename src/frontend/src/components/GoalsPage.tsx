@@ -61,21 +61,45 @@ export default function GoalsPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Page Header */}
-      <div className="bg-gradient-to-br from-primary/10 via-accent/5 to-secondary/10 border-b border-border/40 py-10 px-4">
-        <div className="max-w-2xl mx-auto text-center">
-          <div className="flex items-center justify-center gap-2 mb-3">
-            <Target className="w-7 h-7 text-primary" />
-            <h1 className="font-display text-3xl font-bold text-foreground">
+      <div
+        className="relative border-b border-border/30 py-12 px-4 overflow-hidden"
+        style={{
+          background: "linear-gradient(160deg, oklch(0.96 0.04 75) 0%, oklch(0.94 0.05 85) 35%, oklch(0.95 0.06 135) 100%)",
+        }}
+      >
+        {/* Botanical leaf decorations */}
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <svg aria-hidden="true" className="absolute -left-4 bottom-0 opacity-[0.12]" width="160" height="100" viewBox="0 0 160 100">
+            <path d="M0 100 Q40 60 100 40 Q130 30 160 50 Q110 55 70 75 Z" fill="oklch(0.50 0.20 145)"/>
+            <path d="M0 100 Q50 70 120 55 Q145 48 160 60 Q115 65 75 85 Z" fill="oklch(0.55 0.18 135)" opacity="0.6"/>
+          </svg>
+          <svg aria-hidden="true" className="absolute -right-4 top-0 opacity-[0.12]" width="140" height="90" viewBox="0 0 140 90">
+            <path d="M140 0 Q100 30 60 50 Q30 65 0 55 Q45 48 80 28 Z" fill="oklch(0.68 0.16 65)"/>
+            <path d="M140 10 Q95 38 55 58 Q25 72 0 64 Q42 56 78 37 Z" fill="oklch(0.72 0.18 75)" opacity="0.6"/>
+          </svg>
+          {/* Scatter dots */}
+          <div className="absolute top-6 left-1/4 w-1.5 h-1.5 rounded-full bg-primary/20"/>
+          <div className="absolute top-10 right-1/3 w-1 h-1 rounded-full bg-accent-foreground/20"/>
+          <div className="absolute bottom-5 left-1/3 w-2 h-2 rounded-full bg-primary/15"/>
+        </div>
+
+        <div className="max-w-2xl mx-auto text-center relative">
+          <div className="flex items-center justify-center gap-3 mb-3">
+            <div className="w-10 h-10 rounded-full flex items-center justify-center shadow-sm border border-primary/25"
+              style={{ background: "oklch(0.98 0.025 80)" }}>
+              <Target className="w-5 h-5 text-primary" />
+            </div>
+            <h1 className="font-display text-3xl font-bold text-foreground tracking-tight">
               Gratitude Goals
             </h1>
           </div>
-          <p className="text-muted-foreground font-body text-base max-w-md mx-auto">
+          <p className="text-muted-foreground font-body text-base max-w-md mx-auto leading-relaxed">
             Set intentions to cultivate gratitude in your daily life. Small
             habits grow into a beautiful garden.
           </p>
           {totalCount > 0 && (
             <div className="mt-4 flex items-center justify-center gap-2">
-              <Badge variant="secondary" className="font-body text-sm px-3 py-1">
+              <Badge variant="secondary" className="font-body text-sm px-3 py-1 border border-primary/20 bg-background/60">
                 <Sparkles className="w-3.5 h-3.5 mr-1.5" />
                 {completedCount} of {totalCount} completed
               </Badge>
@@ -135,14 +159,15 @@ export default function GoalsPage() {
                 Start with one of these suggestions to cultivate daily gratitude:
               </p>
               <div className="space-y-2">
-                {suggestedGoals.map((suggestion, i) => (
+                {suggestedGoals.map((suggestion, sugIdx) => (
                   <button
-                    key={i}
+                    key={suggestion}
+                    type="button"
                     onClick={() => handleAddSuggested(suggestion)}
                     disabled={addGoalMutation.isPending}
                     className="w-full text-left flex items-center gap-3 px-4 py-3 rounded-xl bg-background hover:bg-primary/5 border border-border/40 hover:border-primary/30 transition-all group"
                   >
-                    <span className="text-xl">{SUGGESTED_ICONS[i] ?? "✨"}</span>
+                    <span className="text-xl">{SUGGESTED_ICONS[sugIdx % SUGGESTED_ICONS.length] ?? "✨"}</span>
                     <span className="font-body text-sm text-foreground group-hover:text-primary transition-colors flex-1">
                       {suggestion}
                     </span>
@@ -180,9 +205,10 @@ export default function GoalsPage() {
                     {suggestedGoals
                       .filter((s) => !goals.some((g) => g.text === s))
                       .slice(0, 3)
-                      .map((suggestion, i) => (
+                      .map((suggestion) => (
                         <button
-                          key={i}
+                          key={suggestion}
+                          type="button"
                           onClick={() => handleAddSuggested(suggestion)}
                           disabled={addGoalMutation.isPending}
                           className="text-xs font-body px-3 py-1.5 rounded-full bg-primary/8 hover:bg-primary/15 text-primary border border-primary/20 transition-all"
@@ -312,6 +338,7 @@ function GoalCard({ goal, onToggle, onDelete, isUpdating, isDeleting }: GoalCard
       } ${isDeleting ? "opacity-40 pointer-events-none" : ""}`}
     >
       <button
+        type="button"
         onClick={() => onToggle(goal)}
         disabled={isUpdating}
         className="mt-0.5 shrink-0 text-primary hover:text-primary/80 transition-colors"
@@ -337,6 +364,7 @@ function GoalCard({ goal, onToggle, onDelete, isUpdating, isDeleting }: GoalCard
       </span>
 
       <button
+        type="button"
         onClick={() => onDelete(goal.id)}
         disabled={isDeleting}
         className="shrink-0 mt-0.5 text-muted-foreground hover:text-destructive transition-colors opacity-0 group-hover:opacity-100"

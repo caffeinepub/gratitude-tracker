@@ -29,7 +29,7 @@ export function GratitudeStats() {
             {/* Decorative background glow */}
             <div className="absolute -top-6 -right-6 w-32 h-32 rounded-full bg-primary/10 blur-2xl pointer-events-none" />
 
-            <div className="flex-shrink-0">
+            <div className="shrink-0">
                 <img
                     src="/assets/generated/sun-icon.dim_64x64.png"
                     alt="Sun"
@@ -50,7 +50,7 @@ export function GratitudeStats() {
                     </span>
                 </div>
                 <p className="text-sm text-muted-foreground mt-0.5 flex items-center gap-1.5">
-                    <Sparkles className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+                    <Sparkles className="w-3.5 h-3.5 text-primary shrink-0" />
                     {message}
                 </p>
             </div>

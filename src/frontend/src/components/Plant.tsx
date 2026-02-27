@@ -374,10 +374,10 @@ function PlantOverlay({ plantType, stage, width, height, season, flowerVariety }
           </radialGradient>
         </defs>
         {/* Drooping branches — layered feather strokes */}
-        {[30, 60, 90, 110, 130, 160, 190].map((x, i) => (
-          <g key={i}>
+        {([30, 60, 90, 110, 130, 160, 190] as const).map((x, idx) => (
+          <g key={`willow-branch-${x}`}>
             <path
-              d={`M${x} 20 Q${x - 15 + i * 3} 80 ${x - 20 + i * 5} 180`}
+              d={`M${x} 20 Q${x - 15 + idx * 3} 80 ${x - 20 + idx * 5} 180`}
               stroke={colors.fill2}
               strokeWidth="3.5"
               fill="none"
@@ -385,7 +385,7 @@ function PlantOverlay({ plantType, stage, width, height, season, flowerVariety }
               filter="url(#wil-wc)"
             />
             <path
-              d={`M${x} 20 Q${x - 12 + i * 2} 75 ${x - 16 + i * 4} 170`}
+              d={`M${x} 20 Q${x - 12 + idx * 2} 75 ${x - 16 + idx * 4} 170`}
               stroke={colors.fill3}
               strokeWidth="2"
               fill="none"

@@ -103,22 +103,24 @@ export function useBirdAnimation(plantGroups: PlantGroup[], season: Season) {
     timersRef.current.set(birdId, timer);
   }, []);
 
-  useEffect(() => {
-    const staggerTimers: ReturnType<typeof setTimeout>[] = [];
-    birds.forEach((bird, i) => {
-      const stagger = setTimeout(() => {
-        scheduleFlight(bird.id);
-      }, i * randomBetween(2000, 6000));
-      staggerTimers.push(stagger);
-    });
+  useEffect(
+    () => {
+      const staggerTimers: ReturnType<typeof setTimeout>[] = [];
+      birds.forEach((bird, i) => {
+        const stagger = setTimeout(() => {
+          scheduleFlight(bird.id);
+        }, i * randomBetween(2000, 6000));
+        staggerTimers.push(stagger);
+      });
 
-    return () => {
-      staggerTimers.forEach(clearTimeout);
-      timersRef.current.forEach(clearTimeout);
-      timersRef.current.clear();
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+      return () => {
+        staggerTimers.forEach(clearTimeout);
+        timersRef.current.forEach(clearTimeout);
+        timersRef.current.clear();
+      };
+    },
+    []
+  );
 
   const prevLengthRef = useRef(plantGroups.length);
   useEffect(() => {

@@ -1,39 +1,37 @@
 # Gratitude Garden
 
 ## Current State
-- PlantGarden has audio elements for piano-melody.mp3 and birdsong.mp3
-- Both audio files are toggled via a single mute/unmute button
-- Piano plays at volume 0.55, birdsong at 0.25
-- Audio is muted by default (isMuted: true)
-- There is a sound toggle button in the bottom-right controls
-- The app has a rich watercolor aesthetic with seasonal/time-of-day sky, birds, plants, falling particles
+A fully-featured gratitude tracking app with:
+- A living watercolor garden where each plant/tree represents a gratitude subject, with branches and leaves for each entry
+- Seasonal and time-of-day awareness (sun, moon, stars, sky gradients)
+- Animated birds, falling petals/leaves, watercolor SVG trees on the horizon
+- Ambient audio (piano, birdsong, rustling leaves) with smooth fade-in
+- Goals page with reminders and suggested goals
+- Share/snapshot functionality
+- The design token colors are flat neutral (grey/white), lacking the rich warm nature palette the app deserves
 
 ## Requested Changes (Diff)
 
 ### Add
-- Layer a third ambient audio track: rustling leaves (nature ambience — wind through leaves)
-- Make the ambient sound experience richer: slightly increase birdsong presence during daytime/spring/summer, fade it at night
-- Add a subtle audio fade-in when sound is enabled so it doesn't snap on abruptly
-- Show a small animated sound-wave indicator (3 bars pulsing) on the sound button when audio is unmuted, to signal the ambient atmosphere is alive
+- Rich OKLCH warm-green/earth design tokens (primary = forest green, accent = warm amber, background = soft cream) to match the garden theme
+- Subtle animated entrance for the garden scene
+- Better typography hierarchy using serif for headings, clean sans-serif for body
 
 ### Modify
-- Volume levels: piano 0.45 (slightly softer), birdsong 0.30 (slightly more present), leaves 0.20 (subtle background rustle)
-- The sound toggle button should visually indicate "ambient sounds playing" state with the animated bars icon
-- Birdsong volume dynamically adjusts: louder during day (morning/midday), softer at dusk/dawn, very faint at night
+- `index.css` (in `/src/frontend/`): Replace neutral grey design tokens with warm botanical palette (cream backgrounds, forest green primary, amber accents, soft earth tones)
+- `App.tsx`: Improve header with a warmer color background that feels more nature-inspired
+- Overall visual polish: tighten spacing, improve card aesthetics, make goals page feel more cohesive with garden theme
 
 ### Remove
 - Nothing removed
 
 ## Implementation Plan
-1. Add a third audio ref for leaves/wind ambience audio (`/assets/audio/nature-ambience.mp3` — reuse the birdsong file or create a leaves rustle layer)
-2. Actually: use the existing birdsong.mp3 as the ambient birds layer and add a second nature sound layer using a Web Audio API oscillator or a second audio element pointing to a freely available ambient sound URL
-3. Simplest approach: add a second HTMLAudioElement for rustling leaves pointed at `/assets/audio/leaves-rustle.mp3` (same directory as existing audio)
-4. Add fade-in logic: when unmuting, ramp volume from 0 to target over ~2 seconds using a small interval
-5. Add animated sound-wave SVG indicator in the mute toggle button when !isMuted
-6. Adjust birdsong volume dynamically based on timeOfDay.period
+1. Update `index.css` design tokens to warm botanical OKLCH palette
+2. Update `App.tsx` header to use the richer palette
+3. Run UI Craft audit pass for top visual improvements
+4. Validate build
 
 ## UX Notes
-- The sound toggle already exists — just enhance the visual feedback and add the third layer
-- Fade-in prevents jarring audio onset
-- The pulsing bars on the button give a live visual cue that the garden is "breathing"
-- Keep the button compact — just replace the static icon with the animated bars when sound is on
+- The garden is the star — keep it full-width and atmospheric
+- Headers should feel calm and natural, not corporate
+- Warm cream/parchment backgrounds evoke journaling and mindfulness

@@ -39,12 +39,18 @@ export function GratitudeForm() {
     };
 
     return (
-        <div className="bg-card rounded-2xl shadow-card border border-border p-6 animate-fade-in-up">
-            <div className="flex items-center gap-2 mb-5">
-                <div className="w-8 h-8 rounded-full bg-primary/15 flex items-center justify-center">
-                    <PlusCircle className="w-4 h-4 text-primary" />
+        <div className="rounded-2xl border border-primary/20 p-6 animate-fade-in-up"
+        style={{
+          background: "linear-gradient(160deg, oklch(0.99 0.010 85) 0%, oklch(0.98 0.018 75) 100%)",
+          boxShadow: "0 4px 24px oklch(0.68 0.16 65 / 0.12), 0 1px 4px oklch(0.68 0.16 65 / 0.06)",
+        }}
+      >
+            <div className="flex items-center gap-3 mb-5">
+                <div className="w-9 h-9 rounded-full flex items-center justify-center shadow-sm border border-primary/20"
+                  style={{ background: "oklch(0.96 0.04 75)" }}>
+                    <PlusCircle className="w-4.5 h-4.5 text-primary" />
                 </div>
-                <h2 className="font-serif text-xl font-semibold text-foreground">
+                <h2 className="font-serif text-xl font-semibold text-foreground tracking-tight">
                     What are you grateful for today?
                 </h2>
             </div>
@@ -59,8 +65,8 @@ export function GratitudeForm() {
                         placeholder="I'm grateful for… (e.g., the warm cup of coffee this morning, a kind word from a friend…)"
                         value={text}
                         onChange={(e) => setText(e.target.value)}
-                        rows={4}
-                        className="resize-none rounded-xl border-border bg-background/60 focus:ring-primary/40 placeholder:text-muted-foreground/60 text-base leading-relaxed"
+                        rows={5}
+                        className="resize-none rounded-xl border-primary/20 bg-white/70 focus:ring-primary/30 focus:border-primary/40 placeholder:text-muted-foreground/50 text-base leading-relaxed shadow-inner"
                         disabled={addEntry.isPending}
                     />
                 </div>

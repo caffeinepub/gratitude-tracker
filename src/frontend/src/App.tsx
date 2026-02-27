@@ -22,18 +22,32 @@ function AppContent() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border/40 shadow-sm">
-        <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+      <header className="sticky top-0 z-50 backdrop-blur-md border-b border-border/30 shadow-sm overflow-hidden"
+        style={{
+          background: "linear-gradient(135deg, oklch(0.97 0.025 85 / 0.97) 0%, oklch(0.96 0.032 75 / 0.97) 40%, oklch(0.97 0.022 135 / 0.97) 100%)",
+        }}
+      >
+        {/* Decorative botanical leaf accents */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <svg aria-hidden="true" width="120" height="48" viewBox="0 0 120 48" className="absolute left-0 top-0 opacity-[0.07]" fill="oklch(0.52 0.18 145)">
+            <path d="M0 48 Q20 20 60 8 Q80 0 100 12 Q60 18 40 36 Z" />
+            <path d="M0 48 Q30 30 80 22 Q100 18 120 28 Q80 30 50 44 Z" opacity="0.6"/>
+          </svg>
+          <svg aria-hidden="true" width="100" height="48" viewBox="0 0 100 48" className="absolute right-0 top-0 opacity-[0.07]" fill="oklch(0.52 0.18 145)">
+            <path d="M100 48 Q80 20 40 8 Q20 0 0 12 Q40 18 60 36 Z" />
+          </svg>
+        </div>
+        <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between relative">
           {/* Logo */}
           <button
             type="button"
             onClick={() => setPage("home")}
-            className="flex items-center gap-2 group"
+            className="flex items-center gap-2.5 group"
           >
-            <div className="w-8 h-8 rounded-full bg-primary/15 flex items-center justify-center group-hover:bg-primary/25 transition-colors">
+            <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center group-hover:bg-primary/30 transition-all shadow-sm border border-primary/20">
               <Leaf className="w-4 h-4 text-primary" />
             </div>
-            <span className="font-serif text-lg font-bold text-foreground">
+            <span className="font-serif text-lg font-bold text-foreground tracking-tight">
               Gratitude Garden
             </span>
           </button>
@@ -43,10 +57,10 @@ function AppContent() {
             <button
               type="button"
               onClick={() => setPage("home")}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-sans transition-all ${
+              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-sm font-sans transition-all ${
                 page === "home"
-                  ? "bg-primary/15 text-primary font-medium"
-                  : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                  ? "bg-primary/20 text-primary font-medium shadow-sm border border-primary/25"
+                  : "text-muted-foreground hover:text-foreground hover:bg-primary/8"
               }`}
             >
               <TreePine className="w-4 h-4" />
@@ -55,10 +69,10 @@ function AppContent() {
             <button
               type="button"
               onClick={() => setPage("goals")}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-sans transition-all ${
+              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-sm font-sans transition-all ${
                 page === "goals"
-                  ? "bg-primary/15 text-primary font-medium"
-                  : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                  ? "bg-primary/20 text-primary font-medium shadow-sm border border-primary/25"
+                  : "text-muted-foreground hover:text-foreground hover:bg-primary/8"
               }`}
             >
               <Target className="w-4 h-4" />
